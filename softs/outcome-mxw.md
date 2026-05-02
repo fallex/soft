@@ -6,7 +6,7 @@ description: OUTCOME Testnet Bot — детальная инструкция.
 
 > 🔗 **Гитхаб:** [github.com/fallex/outcome-MXW](https://github.com/fallex/outcome-MXW)
 
-Бот для автоматизации [Outcome.xyz](https://testnet.outcome.xyz) — prediction-market платформы на тестнете **Arbitrum Sepolia (chain id 421614)**.
+Бот для автоматизации [Outcome.xyz](https://testnet.outcome.xyz) — тестнет prediction-market платформы HYPE.
 
 ## Что делает
 
@@ -44,12 +44,13 @@ git clone https://github.com/fallex/outcome-MXW.git
 
 2.
 
-<pre class="language-bash"><code class="lang-bash"><a data-footnote-ref href="#user-content-fn-1">git</a> clone https://github.com/fallex/outcome-MXW.git
+```bash
+git clone https://github.com/fallex/outcome-MXW.git
 cd outcome-MXW
-python3 -m venv env &#x26;&#x26; source env/bin/activate    # Mac
-# или: python -m venv env &#x26;&#x26; env\Scripts\activate # Win
+python3 -m venv env && source env/bin/activate    # Mac
+# или: python -m venv env && env\Scripts\activate # Win
 pip install -r requirements.txt
-</code></pre>
+```
 
 ## Настройка
 
@@ -172,5 +173,3 @@ python main.py
 [github.com/fallex/outcome-MXW](https://github.com/fallex/outcome-MXW) — код полностью открыт.
 
 Если найдёшь баг - пиши мне в ТГ или в чат MXW.
-
-[^1]: 
