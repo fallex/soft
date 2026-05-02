@@ -1,16 +1,31 @@
 ---
-description: Установка софта на Windows — пошагово.
+description: Установка софта на Windows через Cursor IDE — пошагово.
 ---
 
 # Установка на Windows
 
-## 1. Установить Python 3.10+
+Полный гайд через **Cursor IDE**. Если предпочитаешь PowerShell/PyCharm/что-то ещё — пропускай шаги про Cursor, остальные команды те же.
+
+## 1. Установить Cursor IDE
+
+1. Зайди на [cursor.sh](https://cursor.sh/) → **Download for Windows**.
+2. Запусти `.exe`, ставь по умолчанию (можно поставить галочку **Add to PATH** — пригодится).
+3. После установки запусти Cursor.
+4. При первом запуске:
+   - Войди по Google или email (нужно для бесплатного AI-помощника).
+   - Импорт настроек VS Code — можно пропустить.
+
+После запуска Cursor выглядит как VS Code, но с встроенным AI-чатом справа и Ctrl+K для инлайн-AI.
+
+## 2. Установить Python 3.10+
 
 1. Скачай с [python.org/downloads](https://www.python.org/downloads/) — версия 3.12.x (или новее).
 2. **Важно:** при установке поставь галочку **«Add Python to PATH»**.
-3. Перезагрузи компьютер (не обязательно, но избавит от проблем с PATH).
+3. После установки перезапусти Cursor (чтобы он подхватил новый PATH).
 
-Проверь в PowerShell:
+В Cursor открой встроенный терминал: **View → Terminal** или **Ctrl + \`** (Ctrl + бэктик).
+
+Проверь:
 
 ```powershell
 python --version
@@ -18,29 +33,40 @@ python --version
 
 Должно вывести `Python 3.12.x`.
 
-## 2. Установить Git
+## 3. Установить Git
 
 1. Скачай с [git-scm.com](https://git-scm.com/download/win).
 2. Установщик — все настройки **по умолчанию**, не меняй ничего.
+3. Перезапусти Cursor.
 
-Проверь:
+Проверь в терминале Cursor:
 
 ```powershell
 git --version
 ```
 
-## 3. Клонировать репо
+## 4. Клонировать репо софта
 
-Открой PowerShell (Win+X → Terminal или PowerShell):
+В Cursor нажми **Ctrl + Shift + P** → начни печатать `Git: Clone` → выбери его.
 
-```powershell
-mkdir C:\crypto
-cd C:\crypto
-git clone https://github.com/fallex/outcome-MXW.git
-cd outcome-MXW
-```
+Вставь URL: `https://github.com/fallex/outcome-MXW.git`
 
-## 4. Создать и активировать venv
+Cursor спросит, куда положить — выбери папку (например `C:\crypto`).
+
+После клонирования Cursor предложит **«Open the cloned repository»** → жми **Open**.
+
+> Альтернатива через терминал:
+>
+> ```powershell
+> mkdir C:\crypto
+> cd C:\crypto
+> git clone https://github.com/fallex/outcome-MXW.git
+> cursor outcome-MXW
+> ```
+
+## 5. Создать и активировать venv
+
+В Cursor открой терминал (**Ctrl + \`**). Внизу должна быть строка с путём типа `C:\crypto\outcome-MXW`.
 
 ```powershell
 python -m venv env
@@ -49,54 +75,79 @@ env\Scripts\activate
 
 Слева появится `(env)` — виртуалка активна.
 
-> ⚠️ Если PowerShell ругается на запрет скриптов — выполни **один раз** от админа:
+> ⚠️ Если PowerShell ругается на запрет скриптов (`...running scripts is disabled...`) — выполни **один раз**:
+>
 > ```powershell
 > Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 > ```
-> Согласись на изменение, потом снова `env\Scripts\activate`.
+>
+> Согласись (`Y`), потом снова `env\Scripts\activate`.
 
-> ⚠️ Каждый новый запуск PowerShell — нужно снова `cd C:\crypto\outcome-MXW` и `env\Scripts\activate`.
+> 💡 Cursor обычно сам замечает папку `env/` и предлагает выбрать этот интерпретатор Python. Соглашайся.
 
-## 5. Установить зависимости
+> ⚠️ Каждый новый запуск терминала — нужно снова `cd C:\crypto\outcome-MXW` и `env\Scripts\activate`.
+
+## 6. Установить зависимости
+
+В том же терминале (с активным `(env)`):
 
 ```powershell
 pip install -r requirements.txt
 ```
 
-## 6. Подготовить input-файлы
+## 7. Подготовить input-файлы
 
-```powershell
-move input\private_keys.txt.example input\private_keys.txt
-move input\proxies.txt.example      input\proxies.txt
-notepad input\private_keys.txt
-notepad input\proxies.txt
+В сайдбаре Cursor (слева, дерево файлов) разверни папку `input/`. Там лежат:
+
+- `private_keys.txt.example`
+- `proxies.txt.example`
+
+Кликни правой кнопкой по `private_keys.txt.example` → **Rename** → убери `.example` → получится `private_keys.txt`. То же со вторым.
+
+Открой `private_keys.txt` в редакторе Cursor (клик в дереве). Вставь приватники, по одному на строку. Сохрани (**Ctrl + S**).
+
+То же для `proxies.txt` — формат `http://user:pass@host:port`, по одной на строку.
+
+## 8. Настроить parameters.py
+
+Открой `parameters.py` в Cursor.
+
+Найди (**Ctrl + F**) строку:
+
+```python
+CAPSOLVER_API_KEY = "CAP-XXXXXX..."
 ```
 
-Положи туда приватники и прокси (по одному на строку), сохрани.
+Замени `CAP-XXXX...` на свой ключ. Сохрани.
 
-## 7. Настроить parameters.py
+> 💡 Если не понимаешь какой-то параметр — выдели его и нажми **Ctrl + L** (открыть AI-чат), спроси «что делает этот параметр». Бесплатный AI Cursor справится.
 
-```powershell
-notepad parameters.py
-```
+## 9. Запустить
 
-Впиши свой `CAPSOLVER_API_KEY`, сохрани.
+Два варианта:
 
-## 8. Запустить
+**Вариант А — через терминал (рекомендую новичкам):**
 
 ```powershell
 python main.py
 ```
 
-Меню — стрелки ↑↓, Enter. Первый раз — **«Создать базу данных»**.
+Появится меню. Стрелками ↑↓, Enter — выбор. Первый раз — **«Создать базу данных»**.
 
-## 9. На последующих запусках
+**Вариант Б — кнопкой ▶ в Cursor:**
 
-```powershell
-cd C:\crypto\outcome-MXW
-env\Scripts\activate
-python main.py
-```
+Открой `main.py`, в правом верхнем углу — кнопка **▶** (Run). Кликай — запустится в терминале Cursor.
+
+## 10. На последующих запусках
+
+В Cursor:
+
+1. **File → Open Folder** → выбери папку `outcome-MXW`.
+2. Открой терминал (**Ctrl + \`**).
+3. ```powershell
+   env\Scripts\activate
+   python main.py
+   ```
 
 Можно сделать `.bat`-файл `start_outcome.bat` на рабочем столе:
 
@@ -108,11 +159,19 @@ python main.py
 pause
 ```
 
-Двойной клик — софт запущен.
+Двойной клик — софт запущен (без Cursor).
 
-## Если ничего не работает
+## Если что-то идёт не так
 
-* Проверь: открой PowerShell, набери `python --version` и `git --version`. Оба должны выдать версии.
-* Если `python` пишет «не найдена» — Python не в PATH. Переустанови с галочкой **Add to PATH**.
-* Если `pip install` падает с ошибкой про SSL — обнови pip: `python -m pip install --upgrade pip`.
-* Если совсем тупик — пиши в чат MXW с скриншотом ошибки.
+1. **Cursor подсветит ошибку красной волнистой линией** — наведи мышкой, прочитай.
+2. **Если ошибка в терминале** — выдели её → правой кнопкой → **Send to AI Chat** (или вручную **Ctrl + L** и вставь). Бесплатный AI объяснит.
+3. **Если AI не помог** — пиши в чат MXW со скрином ошибки.
+
+## Частые проблемы Windows
+
+| Проблема | Решение |
+|---|---|
+| `python: команда не найдена` | Python не в PATH. Переустанови с галочкой **Add to PATH** или перезапусти Cursor. |
+| PowerShell не даёт активировать venv | `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned` |
+| `pip install` падает с SSL | `python -m pip install --upgrade pip` |
+| Меню стрелками не работает | Запускай через **Cursor → Run кнопка**, а не из стороннего PowerShell |

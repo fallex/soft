@@ -27,12 +27,12 @@ N ставок (10–20, рандом по событиям) → холд 60–3
 
 ## Установка
 
-См. инструкции:
+Полные инструкции — через [Cursor IDE](https://cursor.sh/) (рекомендую новичкам, в нём встроен бесплатный AI-помощник):
 
-* [macOS](../getting-started/install-mac.md)
-* [Windows](../getting-started/install-windows.md)
+* [**macOS**](../getting-started/install-mac.md)
+* [**Windows**](../getting-started/install-windows.md)
 
-Краткая последовательность:
+Краткая последовательность (для прожаренных):
 
 1. Ставишь софт на ПК командой:
 
@@ -61,10 +61,24 @@ pip install -r requirements.txt
 
 ### 2. Файлы input
 
+В сайдбаре Cursor (или просто в Finder/Explorer) переименуй файлы в папке `input/`:
+
+* `private_keys.txt.example` → `private_keys.txt`
+* `proxies.txt.example` → `proxies.txt`
+
+Или через терминал:
+
 ```bash
-mv input/private_keys.txt.example input/private_keys.txt
+mv input/private_keys.txt.example input/private_keys.txt    # Mac/Linux
 mv input/proxies.txt.example      input/proxies.txt
 ```
+
+```powershell
+move input\private_keys.txt.example input\private_keys.txt   # Windows
+move input\proxies.txt.example      input\proxies.txt
+```
+
+Открой оба файла в Cursor и впиши приватники / прокси — по одному на строку.
 
 * `input/private_keys.txt` — приватники, по одному на строку.
 * `input/proxies.txt` — прокси `http://user:pass@host:port`, по одной на строку.

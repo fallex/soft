@@ -1,18 +1,33 @@
 ---
-description: Установка софта на macOS — пошагово.
+description: Установка софта на macOS через Cursor IDE — пошагово.
 ---
 
 # Установка на macOS
 
-## 1. Установить Python 3.10+
+Полный гайд через **Cursor IDE**. Если предпочитаешь голый терминал/другую IDE — пропускай шаги про Cursor, остальные команды те же.
 
-Открой Terminal (⌘+Space → «Terminal»). Проверь, есть ли Python:
+## 1. Установить Cursor IDE
+
+1. Зайди на [cursor.sh](https://cursor.sh/) → **Download for Mac**.
+2. Открой скачанный `.dmg` → перетащи Cursor в папку Applications.
+3. Запусти. При первом запуске:
+   - Войди по Google или email (нужно для бесплатного AI-помощника).
+   - Если спросит про импорт настроек VS Code — можно пропустить.
+   - Согласись на установку команды `cursor` в `PATH` (пригодится).
+
+После запуска Cursor выглядит как VS Code, но в правом верхнем углу есть иконка чата с AI и Cmd+K для AI-инлайн-помощи.
+
+## 2. Установить Python 3.10+
+
+Открой встроенный терминал Cursor: **View → Terminal** или горячая клавиша **⌃ + \`** (Ctrl + бэктик).
+
+Проверь, есть ли уже Python:
 
 ```bash
 python3 --version
 ```
 
-Если выдаёт `Python 3.10.x` или выше — пропусти шаг.
+Если выдаёт `Python 3.10.x` или выше — пропусти этот пункт.
 
 Если нет — поставь через [Homebrew](https://brew.sh/):
 
@@ -21,34 +36,54 @@ python3 --version
 brew install python@3.12
 ```
 
-## 2. Установить Git
+> ⚠️ Brew поставится только при наличии Xcode Command Line Tools — он сам их попросит установить, соглашайся (это ~10 минут).
+
+## 3. Установить Git
+
+Тоже в терминале Cursor:
 
 ```bash
 git --version
 ```
 
-Если выдаёт что-то типа `xcode-select: note: install requested...` — нажми «Установить» в появившемся окне. Дальше просто `git --version` снова → всё.
+Если попросит установить «xcode-select» — нажимай «Установить» во всплывающем окне.
 
-## 3. Клонировать репо
+## 4. Клонировать репо софта
 
-```bash
-mkdir -p ~/crypto && cd ~/crypto
-git clone https://github.com/fallex/outcome-MXW.git
-cd outcome-MXW
-```
+Нажми **⌘ + Shift + P** в Cursor → начни печатать `Git: Clone` → выбери `Git: Clone`.
 
-## 4. Создать и активировать venv
+Вставь URL: `https://github.com/fallex/outcome-MXW.git`
+
+Cursor спросит, куда положить — выбери папку (например `~/crypto`).
+
+После клонирования Cursor предложит **«Open the cloned repository»** → жми **Open**.
+
+> Альтернатива через терминал:
+>
+> ```bash
+> mkdir -p ~/crypto && cd ~/crypto
+> git clone https://github.com/fallex/outcome-MXW.git
+> cursor outcome-MXW
+> ```
+
+## 5. Создать и активировать venv
+
+В Cursor открой терминал (**⌃ + \`**), убедись, что находишься в папке проекта (внизу должна быть строка с путём типа `~/crypto/outcome-MXW`).
 
 ```bash
 python3 -m venv env
 source env/bin/activate
 ```
 
-Слева в строке появится `(env)` — это значит, виртуалка активна.
+Слева в терминале появится `(env)` — виртуалка активна.
 
-> ⚠️ Каждый новый запуск Terminal — нужно **снова** делать `source env/bin/activate` перед работой с софтом.
+> 💡 Cursor обычно сам замечает, что в папке появилась `env/`, и предлагает выбрать этот интерпретатор Python. Соглашайся — тогда инспектор кода и AI будут понимать, какие у тебя установлены библиотеки.
 
-## 5. Установить зависимости
+> ⚠️ Каждый новый запуск терминала — нужно **снова** делать `source env/bin/activate` перед работой. Если забыл — Cursor подскажет в логах ошибки про «module not found».
+
+## 6. Установить зависимости
+
+В том же терминале (с активным `(env)`):
 
 ```bash
 pip install -r requirements.txt
@@ -56,59 +91,71 @@ pip install -r requirements.txt
 
 Подождать минуту-две.
 
-## 6. Подготовить input-файлы
+## 7. Подготовить input-файлы
 
-```bash
-mv input/private_keys.txt.example input/private_keys.txt
-mv input/proxies.txt.example      input/proxies.txt
+В сайдбаре Cursor (слева, дерево файлов) разверни папку `input/`. Там лежат:
+
+- `private_keys.txt.example`
+- `proxies.txt.example`
+
+Кликни правой кнопкой по `private_keys.txt.example` → **Rename** → убери `.example` → получится `private_keys.txt`. То же со вторым файлом.
+
+Открой `private_keys.txt` (просто клик в дереве) — Cursor покажет файл в редакторе. Вставь приватники, по одному на строку. Сохрани (**⌘ + S**).
+
+То же для `proxies.txt` — формат `http://user:pass@host:port`, по одной на строку.
+
+## 8. Настроить parameters.py
+
+Открой `parameters.py` в Cursor (клик в дереве).
+
+Найди (**⌘ + F**) строку:
+
+```python
+CAPSOLVER_API_KEY = "CAP-XXXXXX..."
 ```
 
-Открой их в любом редакторе:
+Замени `CAP-XXXX...` на свой ключ. Сохрани.
 
-```bash
-open -a TextEdit input/private_keys.txt
-open -a TextEdit input/proxies.txt
-```
+> 💡 Если не понимаешь какой-то параметр — выдели его, нажми **⌘ + L** (открыть AI-чат) и спроси «что делает этот параметр». Бесплатный AI Cursor с этим справится.
 
-Положи туда приватники и прокси (по одному на строку).
+## 9. Запустить
 
-## 7. Настроить parameters.py
+Два варианта:
 
-```bash
-open -a TextEdit parameters.py
-```
-
-Минимум — впиши `CAPSOLVER_API_KEY`. Остальное можно оставить дефолтным.
-
-## 8. Запустить
+**Вариант А — через терминал (рекомендую новичкам):**
 
 ```bash
 python main.py
 ```
 
-Появится меню. Стрелками ↑↓, Enter — выбор. Первый раз выбери **«Создать базу данных»** — софт зашифрует приватники и очистит txt-файлы.
+Появится меню. Стрелками ↑↓, Enter — выбор. Первый раз выбери **«Создать базу данных»**.
 
-## 9. На последующих запусках
+**Вариант Б — кнопкой ▶ в Cursor:**
+
+Открой `main.py`, в правом верхнем углу есть кнопка **▶** (Run). Кликай — запустится в терминале Cursor.
+
+## 10. На последующих запусках
+
+В Cursor:
+
+1. **File → Open Folder** → выбери папку `outcome-MXW`.
+2. Открой терминал (**⌃ + \`**).
+3. ```bash
+   source env/bin/activate
+   python main.py
+   ```
+
+Можно сделать алиас в `~/.zshrc`:
 
 ```bash
-cd ~/crypto/outcome-MXW
-source env/bin/activate
-python main.py
-```
-
-Три команды. Можно положить в alias:
-
-```bash
-echo 'alias outcome="cd ~/crypto/outcome-MXW && source env/bin/activate && python main.py"' >> ~/.zshrc
+echo 'alias outcome="cursor ~/crypto/outcome-MXW"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-Дальше — просто `outcome` в Terminal.
+Дальше в Terminal — `outcome`, и Cursor сразу откроет проект.
 
-## Деактивация venv
+## Если что-то идёт не так
 
-```bash
-deactivate
-```
-
-(Или просто закрой окно Terminal.)
+1. **Cursor подсветит ошибку красной волнистой линией** — наведи мышкой, прочитай.
+2. **Если ошибка в терминале при запуске** — выдели её в терминале → правой кнопкой → **Send to AI Chat** (или скопируй и вставь сам в чат **⌘ + L**). Бесплатный AI объяснит.
+3. **Если AI не помог** — пиши в чат MXW со скрином ошибки.
