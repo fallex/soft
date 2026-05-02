@@ -120,8 +120,6 @@ CAPSOLVER_API_KEY = "CAP-XXXXXX..."
 
 ## 9. Запустить
 
-
-
 **Через терминал**
 
 ```bash
@@ -140,15 +138,6 @@ python main.py
    source env/bin/activate
    python main.py
    ```
-
-Можно сделать алиас в `~/.zshrc` для быстрого запуска (пример для софта `outcome-MXW`):
-
-```bash
-echo 'alias outcome="cursor ~/crypto/outcome-MXW"' >> ~/.zshrc
-source ~/.zshrc
-```
-
-Дальше в Terminal — `outcome`, и Cursor сразу откроет проект. Аналогично можно сделать алиас на любой другой софт.
 
 ## Если что-то идёт не так
 
