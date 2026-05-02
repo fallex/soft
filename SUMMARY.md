@@ -7,7 +7,6 @@
 * [🛡️ Обзор](security/README.md)
 * [Базовая безопасность ПК](security/basics.md)
 * [Аккаунты и кошельки](security/wallets.md)
-* [Что НЕЛЬЗЯ хранить](security/secrets.md)
 
 ## 🔧 Расходники
 
