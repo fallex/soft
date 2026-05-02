@@ -27,22 +27,26 @@ N ставок (10–20, рандом по событиям) → холд 60–3
 
 ## Установка
 
-Полные инструкции — через [Cursor IDE](https://cursor.sh/) (рекомендую новичкам, в нём встроен бесплатный AI-помощник):
+### Откуда скачать
+
+🔗 **Репозиторий софта:** [github.com/fallex/outcome-MXW](https://github.com/fallex/outcome-MXW)
+
+> Заходи, листай код, проверяй сам — софт открытый, никакой обфускации, никаких скрытых модулей. Если шаришь в питоне — посмотри `core/` и `modules/` лично; если не шаришь — попроси любую ИИшку (например, бесплатный AI в [Cursor](https://cursor.sh/)) пройтись по файлам и подтвердить, что софт делает только то, что заявлено.
+
+### Команда клонирования
+
+```bash
+git clone https://github.com/fallex/outcome-MXW.git
+```
+
+### Полная установка
+
+Шаги: установить Cursor IDE → Python → Git → клон репо → venv → зависимости → заполнить input → запустить. Универсальный гайд:
 
 * [**macOS**](../getting-started/install-mac.md)
 * [**Windows**](../getting-started/install-windows.md)
 
-Краткая последовательность (для прожаренных):
-
-1. Ставишь софт на ПК командой:
-
-```
-git clone https://github.com/fallex/outcome-MXW.git
-```
-
-или самостоятельно из гитхаба
-
-2.
+Краткая версия для опытных:
 
 ```bash
 git clone https://github.com/fallex/outcome-MXW.git
@@ -62,10 +66,10 @@ pip install -r requirements.txt
 
 ### 2. Файлы input
 
-В сайдбаре Cursor (или просто в Finder/Explorer) переименуй файлы в папке `input/`:
+В сайдбаре Cursor (или просто в Finder/Explorer) переименуй два файла в папке `input/`:
 
-* `private_keys.txt.example` → `private_keys.txt`
-* `proxies.txt.example` → `proxies.txt`
+* `private_keys.txt.example` → `private_keys.txt` — приватники, по одному на строку.
+* `proxies.txt.example` → `proxies.txt` — прокси `http://user:pass@host:port`, по одной на строку.
 
 Или через терминал:
 
@@ -79,10 +83,7 @@ move input\private_keys.txt.example input\private_keys.txt   # Windows
 move input\proxies.txt.example      input\proxies.txt
 ```
 
-Открой оба файла в Cursor и впиши приватники / прокси — по одному на строку.
-
-* `input/private_keys.txt` — приватники, по одному на строку.
-* `input/proxies.txt` — прокси `http://user:pass@host:port`, по одной на строку.
+Открой оба файла в Cursor и впиши приватники / прокси.
 
 ### 3. parameters.py — обязательные
 
@@ -150,7 +151,7 @@ python main.py
 * В терминале — цветной вывод по уровням (INFO/SUCCESS/WARNING/ERROR).
 * Если что-то падает массово — копируй лог-фрагмент в чат MXW.
 
-См. также [FAQ → Outcome](../getting-started/faq.md#softrunsoft-специфические).
+См. также [FAQ](../getting-started/faq.md).
 
 ## Безопасность
 
@@ -172,4 +173,4 @@ python main.py
 
 [github.com/fallex/outcome-MXW](https://github.com/fallex/outcome-MXW) — код полностью открыт.
 
-Если найдёшь баг - пиши мне в ТГ или в чат MXW.
+Если найдёшь баг — пиши мне в ТГ или в чат MXW.
