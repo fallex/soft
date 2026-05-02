@@ -34,13 +34,22 @@ N ставок (10–20, рандом по событиям) → холд 60–3
 
 Краткая последовательность:
 
-```bash
-git clone https://github.com/fallex/outcome-MXW.git
-cd outcome-MXW
-python3 -m venv env && source env/bin/activate    # Mac
-# или: python -m venv env && env\Scripts\activate # Win
-pip install -r requirements.txt
+1. Ставишь софт на ПК командой:
+
 ```
+git clone https://github.com/fallex/outcome-MXW.git
+```
+
+или самостоятельно из гитхаба
+
+2.
+
+<pre class="language-bash"><code class="lang-bash"><a data-footnote-ref href="#user-content-fn-1">git</a> clone https://github.com/fallex/outcome-MXW.git
+cd outcome-MXW
+python3 -m venv env &#x26;&#x26; source env/bin/activate    # Mac
+# или: python -m venv env &#x26;&#x26; env\Scripts\activate # Win
+pip install -r requirements.txt
+</code></pre>
 
 ## Настройка
 
@@ -149,3 +158,5 @@ python main.py
 [github.com/fallex/outcome-MXW](https://github.com/fallex/outcome-MXW) — код полностью открыт.
 
 Если найдёшь баг - пиши мне в ТГ или в чат MXW.
+
+[^1]: 
