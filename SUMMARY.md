@@ -21,7 +21,6 @@
 * [🚀 Обзор](getting-started/README.md)
 * [macOS](getting-started/install-mac.md)
 * [Windows](getting-started/install-windows.md)
-* [Анатомия типового софта](getting-started/anatomy.md)
 * [FAQ](getting-started/faq.md)
 
 ## 📦 Софты
