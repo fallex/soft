@@ -10,7 +10,7 @@ description: Список всех софтов в хабе.
 
 | Софт            | Сеть | Что делает                                         | Гитхаб                                                                 | Документация                  |
 | --------------- | ---- | -------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------- |
-| **OUTCOME-MXW** | HYPE | Фаусет + ставки на prediction-маркетах Outcome.xyz | [github.com/fallex/outcome-MXW](https://github.com/fallex/outcome-MXW) | [→ Подробнее](outcome-mxw.md) |
+| **OUTCOME-MXW** | Hyperliquid testnet | Фаусет + ставки на prediction-маркете Outcome.xyz (экосистема Hyperliquid) | [github.com/fallex/outcome-MXW](https://github.com/fallex/outcome-MXW) | [→ Подробнее](outcome-mxw.md) |
 
 ## В разработке
 
@@ -20,8 +20,8 @@ description: Список всех софтов в хабе.
 
 ## Прежде чем запускать любой софт
 
-1. Прочти [Безопасность](../security/).
-2. Заведи [Расходники](../consumables/).
-3. Установи [Python и зависимости](../getting-started/).
+1. Прочти [Безопасность](../security/index.md).
+2. Заведи [Расходники](../consumables/index.md).
+3. Установи [Python и зависимости](../getting-started/index.md).
 4. Открой страницу нужного софта.
 

@@ -6,7 +6,7 @@ description: OUTCOME Testnet Bot — детальная инструкция.
 
 > 🔗 **Гитхаб:** [github.com/fallex/outcome-MXW](https://github.com/fallex/outcome-MXW)
 
-Бот для автоматизации [Outcome.xyz](https://testnet.outcome.xyz) — тестнет prediction-market платформы HYPE.
+Бот для автоматизации [Outcome.xyz](https://testnet.outcome.xyz) — prediction-маркет в **тестнете Hyperliquid** (экосистема **HYPE / $HYPE**), один из первых предикшн-маркетов экосистемы.
 
 ## Что делает
 
@@ -160,7 +160,7 @@ python main.py
 * Лог-файлы содержат **последние 4 + 4 символа адреса** (`0x5236...b4EE`), без полных адресов и приватников.
 * Сессия авторизации (cookie) в RAM, не сохраняется на диск.
 
-> Подробнее: [Безопасность](../security/).
+> Подробнее: [Безопасность](../security/index.md).
 
 ## Известные особенности Outcome.xyz
 

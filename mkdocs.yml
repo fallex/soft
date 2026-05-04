@@ -1,0 +1,126 @@
+site_name: Soft Hub by sprintray
+site_url: https://fallex.github.io/soft/
+site_description: Хаб с софтами для крипто-автоматизаций. От sprintray, для MXW.
+site_author: sprintray
+repo_url: https://github.com/fallex/soft
+repo_name: fallex/soft
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+copyright: MIT — sprintray
+
+theme:
+  name: material
+  language: ru
+  icon:
+    logo: material/home
+    repo: fontawesome/brands/github
+  favicon: https://raw.githubusercontent.com/twitter/twemoji/master/assets/72x72/1f3e0.png
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Системная тема
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/weather-sunny
+        name: Светлая
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/weather-night
+        name: Тёмная
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+
+nav:
+  - Главная: index.md
+  - 🛡️ Безопасность:
+      - security/index.md
+      - Базовая безопасность ПК: security/basics.md
+      - Аккаунты и кошельки: security/wallets.md
+  - 🔧 Расходники:
+      - consumables/index.md
+      - Прокси: consumables/proxies.md
+      - Кошельки: consumables/wallets.md
+      - Капсолвер: consumables/captchas.md
+  - 🚀 Установка и запуск:
+      - getting-started/index.md
+      - macOS: getting-started/install-mac.md
+      - Windows: getting-started/install-windows.md
+      - FAQ: getting-started/faq.md
+  - 📦 Софты:
+      - softs/index.md
+      - OUTCOME-MXW: softs/outcome-mxw.md
+  - ℹ️ Прочее:
+      - Дисклеймер: disclaimer.md
+      - Контакты: contacts.md
+      - Предложения на новые софты: prochee/predlozheniya-na-novye-softy.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      permalink_title: Ссылка на этот заголовок
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search:
+      lang:
+        - ru
+        - en
+
+extra:
+  social:
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/0xSprintray
+      name: Telegram @0xSprintray
+    - icon: fontawesome/brands/github
+      link: https://github.com/fallex
+      name: GitHub fallex
+  generator: false
